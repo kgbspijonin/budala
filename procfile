@@ -1,1 +1,2 @@
+heroku buildpacks:set heroku/python
 budala: python budala.py
