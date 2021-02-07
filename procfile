@@ -1,2 +1,3 @@
 heroku buildpacks:set heroku/python
+heroku ps:scale web=1
 budala: python budala.py
