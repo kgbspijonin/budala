@@ -25,6 +25,7 @@ class DClient(discord.Client):
         super().__init__(command_prefix="budala")
 
     async def on_ready(self):
+
         logger = logging.getLogger("budala")
         logger.setLevel(logging.ERROR)
 
@@ -37,8 +38,8 @@ class DClient(discord.Client):
         print(self.user.name)
         print(self.user.id)
         print('------')
-        messages = await self.get_channel(807359181354041376).history(limit=500).flatten()
-        self.profiles = await self.get_channel(810631887009480704).history(limit=500).flatten()
+        messages = await self.get_channel(807359181354041376).history(limit=200).flatten()
+        self.profiles = await self.get_channel(810631887009480704).history(limit=200).flatten()
         newProfiles = []
         for profile in self.profiles:
             p = profile.content
@@ -162,7 +163,7 @@ class DClient(discord.Client):
     async def fetchLobbies(self):
         await self.wait_until_ready()
         while not self.is_closed():
-            print(f"Fetch started - {'Limited' if self.is_ws_ratelimited() else 'Not limited'}")
+            print("lobby fetch started")
             await self.handleLobbies()
             await self.handleMatches()
         print("dead")
@@ -191,4 +192,3 @@ if __name__ == '__main__':
     client = DClient()
 
     client.run('')
-    
